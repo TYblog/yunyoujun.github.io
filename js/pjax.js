@@ -1,0 +1,1 @@
+const pjax=new Pjax({selectors:["title",".js-Pjax","main","aside"]});function isHome(){window.location.pathname===CONFIG.root?document.body.classList.add("is-home"):document.body.classList.remove("is-home")}document.addEventListener("DOMContentLoaded",isHome),document.addEventListener("pjax:success",isHome);

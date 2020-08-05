@@ -1,0 +1,435 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="云游君"><meta name="copyright" content="云游君"><meta name="generator" content="Hexo 5.0.0"><meta name="theme" content="hexo-theme-yun"><title>教你如何从零开始搭建一个属于自己的网站 | 云游君的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.17/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_stqaphw3j4.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => <!-- hexo-inject:begin --><!-- hexo-inject:end -->{
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><link rel="alternate" href="/atom.xml" title="云游君的小站" type="application/atom+xml"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.5","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://elpsy.vercel.app/api/words/young"},"algolia":{"appID":"CJXXAGRCYN","apiKey":"ae1966d2aeab22bf9335679f45d2cd9a","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容: ${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><link rel="preconnect" href="https://stats.g.doubleclick.net" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=UA-121354150-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-121354150-1');</script><script data-ad-client="ca-pub-2245427233262012" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M9KWR9L');</script><!-- End Google Tag Manager --><meta name="description" content="写给想要拥有一个自己的网站但没有资金成本的小白与曾经的自己。  前言虽说是网站，对于个人来说，或许一般叫作博客。但我不希望它仅仅是一个博客，而是能够成为一个处于自己现实生活之外、自由、实验、不用畏惧他人眼光甚至可以独断专行的地方。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教你如何从零开始搭建一个属于自己的网站">
+<meta property="og:url" content="https://www.yunyoujun.cn/share/how-to-build-your-site/index.html">
+<meta property="og:site_name" content="云游君的小站">
+<meta property="og:description" content="写给想要拥有一个自己的网站但没有资金成本的小白与曾经的自己。  前言虽说是网站，对于个人来说，或许一般叫作博客。但我不希望它仅仅是一个博客，而是能够成为一个处于自己现实生活之外、自由、实验、不用畏惧他人眼光甚至可以独断专行的地方。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/pDZtlgQsLTb9k13.png">
+<meta property="og:image" content="https://img.shields.io/github/stars/YunYouJun/hexo-theme-yun?style=social">
+<meta property="og:image" content="https://i.loli.net/2020/03/12/cUIuDPJfo379ZOk.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/08/DhfLu5yngb7NZE2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/about/hexo-qrcode.jpg">
+<meta property="article:published_time" content="2020-03-04T17:31:08.000Z">
+<meta property="article:modified_time" content="2020-05-14T08:31:00.000Z">
+<meta property="article:author" content="云游君">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="分享">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/05/pDZtlgQsLTb9k13.png"><script src="/js/ui/mode.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="云游君"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="云游君"></a><div class="site-author-name"><a href="/about/">云游君</a></div><a class="site-name" href="/about/site.html">云游君的小站</a><sub class="site-subtitle">All at sea.</sub><div class="site-desciption">希望能成为一个有趣的人</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">107</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">15</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">68</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://shang.qq.com/wpa/qunwpa?idkey=c929e704022704d8cced9ec355d44a3fa7ad34aea12cef1de03d75d3d7d5b059" title="QQ 群" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/YunYouJun" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/jizhideyunyoujun" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.douban.com/people/yunyoujun/" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=247102977" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/yunyoujun/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/1579790" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/YunYouJun" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/elpsycn" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:me@yunyoujun.cn" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.now.sh/" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.1.</span> <span class="toc-text">关键词</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Node-js"><span class="toc-number">2.1.</span> <span class="toc-text">安装 Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E4%B8%8E-GitHub"><span class="toc-number">2.2.</span> <span class="toc-text">Git 与 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Git"><span class="toc-number">2.2.1.</span> <span class="toc-text">安装 Git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C-GitHub"><span class="toc-number">2.2.2.</span> <span class="toc-text">注册 GitHub</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Hexo"><span class="toc-number">2.3.</span> <span class="toc-text">安装 Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Hexo-%E4%B8%BB%E9%A2%98"><span class="toc-number">2.3.1.</span> <span class="toc-text">使用 Hexo 主题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-Hexo-%E4%B8%BB%E9%A2%98"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">下载 Hexo 主题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%96%E8%BE%91-Hexo-%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">编辑 Hexo 配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.1.3.</span> <span class="toc-text">自定义主题配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%BB%BA%E7%AB%8B%E5%85%B3%E8%81%94"><span class="toc-number">2.5.</span> <span class="toc-text">与远程仓库建立关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">2.6.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E4%B8%8E%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">2.7.</span> <span class="toc-text">备份与自动部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%86%99%E4%BD%9C"><span class="toc-number">2.8.</span> <span class="toc-text">开始写作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E7%AB%A0"><span class="toc-number">2.8.1.</span> <span class="toc-text">文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.8.2.</span> <span class="toc-text">页面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FAQ"><span class="toc-number">3.</span> <span class="toc-text">FAQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">视频？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BB%91%E5%AE%9A%E4%BD%A0%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">如何绑定你的自定义域名？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E6%A1%88"><span class="toc-number">3.3.</span> <span class="toc-text">备案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%8F%AF%E8%83%BD%E6%9C%89%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.4.</span> <span class="toc-text">更多可能有帮助的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0"><span class="toc-number">3.5.</span> <span class="toc-text">其他平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.yunyoujun.cn/share/how-to-build-your-site/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="云游君"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="云游君的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">教你如何从零开始搭建一个属于自己的网站<a class="post-edit-link" href="https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/_posts/share/how-to-build-your-site.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-03-05 01:31:08" itemprop="dateCreated datePublished" datetime="2020-03-05T01:31:08+08:00">2020-03-05</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-05-14 16:31:00" itemprop="dateModified" datetime="2020-05-14T16:31:00+08:00">2020-05-14</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">25m</span></span></span><span class="leancloud_visitors" id="/share/how-to-build-your-site/" data-flag-title="教你如何从零开始搭建一个属于自己的网站"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E4%BA%91%E6%B8%B8%E7%9A%84%E5%B0%8F%E5%AE%89%E5%88%A9/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">云游的小安利</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%95%99%E7%A8%8B/" style="--text-color:royalblue"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">教程</span></a><a class="tag" href="/tags/%E5%88%86%E4%BA%AB/" style="--text-color:blue"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">分享</span></a><a class="tag" href="/tags/Hexo/" style="--text-color:#0E83CD"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Hexo</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>写给想要拥有一个自己的网站但没有资金成本的小白与曾经的自己。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>虽说是网站，对于个人来说，或许一般叫作博客。<br>但我不希望它仅仅是一个博客，而是能够成为一个处于自己现实生活之外、自由、实验、不用畏惧他人眼光甚至可以独断专行的地方。</p>
+<a id="more"></a>
+
+<p>当然，这本质还是一个新手向教程，也许会有点科普的感觉。<br>我会从整体上对搭建网站的流程和使用到的技术及步骤进行介绍（因为要铺开讲，倘若包括轶事，实在太多太杂，我也会点到为止），并让你明白这个东西在网站的过程中起到什么样的作用。<br>但我不会就细枝末节展开叙述，譬如如何注册账号、安装时如何点击下一步。<br>我希望看完此篇文章后，此前对此方面知识一无所知的小白，到最后也能搭建出一个属于自己的站点。（前提是认识基础的英语单词和善用搜索引擎）</p>
+<p>已经有所基础的同学大可跳读或者直接关闭。</p>
+<blockquote>
+<p>注释处多为相关补充说明，对正常流程没有影响，若没有兴趣，可以略过。</p>
+</blockquote>
+<p>与文章相关疑问都可在本文章的 GitHub Issues 中进行评论，其他疑问可到对应项目或文章下评论。</p>
+<p>我会尽可能保持更新该文章所使用到的技术和做法，并随时接受勘误。</p>
+<h3 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h3><ul>
+<li>Hexo</li>
+<li>静态博客</li>
+<li>无服务器</li>
+<li>GitHub Pages</li>
+<li>hexo-theme-yun（私货）</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><blockquote>
+<p><strong>什么是 Node.js ？</strong><br>这得从什么是 JS 说起，JS 也就是 JavaScript。（为什么有种从盘古开天辟地开始的感觉）没错，JavaScript 就是网页的盘古。JavaScript 是一种编程语言，我们所见到的网页中的交互和逻辑处理几乎都是由 JavaScript 完成。<br>JavaScript 语法简单，易学易用。（当然也请不要小瞧它，虽然它入门门槛低，但上限同样也很高。包括但不限于实现网站前后端，手机桌面应用程序，机器学习，计算机图形学等。）<br>在 Node.js 诞生前，JavaScript 都运行于浏览器端。也就是说，它是鱼，浏览器是装满了水的水缸。<br>2008 年，Chrome V8 诞生。2009 年，Node.js 诞生。并成为 GitHub 早期最著名的开源项目。GitHub 可能大家已有所了解，后续再说。<br>Node.js 便是一个基于 Chrome V8 引擎的 JavaScript 运行环境。（当年第一次看到这句话时，我也一脸懵逼。）按照我的理解，JavaScript 是鱼，Chrome V8 就是抽水机，Node.js 则把这台抽水机也装在你电脑上。于是你的电脑也有了 Node.js 这个和浏览器相似的水缸，也可以在里面运行 JavaScript 了！<br>当然 Node.js 和浏览器端还是因为自身定位和一些历史原因而有些许区别的，不再展开。<br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/node.js/7567977">Node.js | 百度百科</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript | MDN</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">下载｜ Node.js</a></p>
+<p>建议下载<strong>长期支持版</strong>而非<strong>当前发布版</strong>（因为如果是最新版，容易出现一些奇妙的 bug）。</p>
+<p>全部默认下一步进行安装。</p>
+<p>Windows 打开命令提示符，macOS 打开终端。（= =，这个不会就请百度吧。）<br>Linux 用户右上角关闭本标签页。</p>
+<p>后续如提到输入命令，均默认指打开终端进行输入。</p>
+<p>输入 <code>node --version</code>，如果得到的版本号与你方才安装的一致，那么 Node.js 就已经成功安装。</p>
+<blockquote>
+<p>Node.js 安装成功时也默认安装了 <code>npm</code>，在此后将会用到。<br><code>npm</code> 是随 Node.js 一起被安装的包管理工具，你可以理解成 Node.js 自带的应用商店。</p>
+</blockquote>
+<p>对了，国内使用 npm 可能很慢。</p>
+<p><strong>你可以考虑切换为 <code>taobao</code> 镜像源。</strong></p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org</code></pre>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/yunyoujun/notes/npm-and-yarn#nrm">npm &amp; yarn 常用包与命令</a></p>
+</blockquote>
+<h3 id="Git-与-GitHub"><a href="#Git-与-GitHub" class="headerlink" title="Git 与 GitHub"></a>Git 与 GitHub</h3><h4 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h4><blockquote>
+<p>Visual Studio Code，简称 VS Code。<br>目前最为强大易用的编辑器，轻量且快速。（<del>宇宙第一编辑器</del>）<br>注意：它并不是我们常常听到的 VS，VS 常常指的是 Visual Studio，是一个功能强大的 IDE（集成开发环境），体积也相比 VS Code 都要大上一个量级。</p>
+</blockquote>
+<p>在此之前，我建议你先安装 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS Code</a>。因为安装 Git Bash 时，可以设置 VS Code 作为默认编辑器。</p>
+<blockquote>
+<p>Git 是一个开源的分布式版本控制系统，由 Linus Torvalds（同时也是 Linux 的作者）为了管理 Linux 开发而开发。<br>简而言之，是一个版本管理工具。譬如设计师设计好了第三版的海报，客户却说还是要第一版吧，这时便可以通过 Git 快速回退到最初的版本。<br>你只需要把每次更改的状态（Git 会自动进行检测，你只要掌握基础的几条命令就可以了）告诉 Git，而不需要每个版本都保存一份压缩包，既方便也能大大节约空间。<br>（当然这主要只对代码文本起作用，因为 Git 的本质是记录各行代码的增减，倘若是像视频、海报这类二进制文件来说便体现不出丝毫优势了。当然想要应对这种场景还有 <a target="_blank" rel="noopener" href="https://git-lfs.github.com/">Git LFS</a>。）</p>
+</blockquote>
+<p>下载 <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a> 并安装（如果国内速度太慢，可以试试<a target="_blank" rel="noopener" href="https://pc.qq.com/detail/13/detail_22693.html">这里</a>）</p>
+<p>macOS 用户可以下载官网的安装包进行安装，也可以直接安装 App Store 的 Xcode（附带会安装 Git，但是比较大）。</p>
+<blockquote>
+<p>类似的工具还有：SVN。但始终更推荐 Git，因为它功能更为强大且它的背后还有更强大的生态：GitHub。</p>
+</blockquote>
+<h4 id="注册-GitHub"><a href="#注册-GitHub" class="headerlink" title="注册 GitHub"></a>注册 GitHub</h4><p>这一部分内容，你也可以放到本地调试并预览成功后并打算线上部署的时候，再回过头来看。</p>
+<blockquote>
+<p>GitHub 一听便与 Git 有所渊源。<code>Git</code> 在英文中是懒人、饭桶之意。<code>Hub</code> 则是中心、集线器的意思。譬如 USB 集线器就是 USB Hub。所以 GitHub 就是饭桶中心（<del>大雾</del>）。<br>GitHub 是全世界最大的开源项目与代码托管平台，也是众多开发者的交流场所。<del>还是全球最大的同性交友网站</del>。<br>而代码托管本身用到的正是上文提到的 Git 技术。</p>
+</blockquote>
+<p>注册 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> 账号。（虽然都是英文，但不必畏惧，也并不会造成使用障碍，只要记得最常用的选项含义即可，以及善用手头的翻译软件。）</p>
+<blockquote>
+<p>注意：注册时的英文用户名将成为你可以使用的免费域名前缀。</p>
+</blockquote>
+<p>登录 GitHub。</p>
+<blockquote>
+<p>为什么要用 GitHub？<br>对于平民玩家来说，在初次尝试建立自己的网站时，也许并不会有闲钱或者说决心来购买自己的服务器与域名。<br>而 GitHub 则提供了 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 这一服务。<br>用户们可以利用这一服务，部署自己的静态站点。</p>
+</blockquote>
+<p>点击右上角的 <code>+</code> -&gt; <code>New repository</code> 新建仓库。</p>
+<p><img src="https://i.loli.net/2020/03/05/pDZtlgQsLTb9k13.png" alt="QQ20200305-221806@2x.png" loading="lazy"></p>
+<blockquote>
+<p>我这里因为已经有同名仓库，所以提示了重复。</p>
+</blockquote>
+<p>仓库名称务必为 <code>你的用户名.github.io</code>，用户名是英文，大小写无所谓，但建议统一小写。（因为你会发现时常切换大小写很麻烦）</p>
+<blockquote>
+<p>为什么必须这个作为仓库名？<br>GitHub Pages 服务的命名规范，同时它也将成为你的专属域名。当然，你也可以购置自己的专属域名并用它来提供内容。</p>
+</blockquote>
+<p>点击 <code>Create repository</code>。</p>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></p>
+<ul>
+<li>GitHub: <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">官方文档</a>（直接参考文档也是一个不错的选择）</li>
+</ul>
+<blockquote>
+<p><strong>为嘛使用 Hexo ？</strong><br>Hexo 是一个快速、简洁而强大的博客框架，基于 Node.js，同样托管于 GitHub 之上。生态中拥有众多插件主题。你可以基于它快速生成一些静态页面。<br>你可以使用别人的各种主题与插件，也可以自己定制开发想要的功能。<br><strong>为什么不是…?</strong><br>其他常用的博客框架还有 <a target="_blank" rel="noopener" href="https://wordpress.org/">WordPress</a>，<a target="_blank" rel="noopener" href="https://typecho.org/">Typecho</a>，<a target="_blank" rel="noopener" href="https://ghost.org/">Ghost</a> 等，但这些往往都需要购置自己的服务器，而无法静态化地部署到 GitHub Pages 上。（当然，相应的功能和灵活性也大大提升。）静态化站点还有一个优势就是访问速度往往更快。<br>静态网站生成器还有 <a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/">Vuepress</a>，<a target="_blank" rel="noopener" href="https://www.gatsbyjs.org/">Gatsby</a> 等。但这些多是为了写文档而量身定制的，你也可以使用它们，但是相较 Hexo 的博客定位，它们关于博客的插件和主题以及解决办法会少得多。<br>Hexo 提供的功能与 <a target="_blank" rel="noopener" href="https://gohugo.io/">Hugo</a> 几乎都有，（生成大量文件时，甚至比 Hexo 更快）不过它是基于 GO 语言。日后你想对自己的网站进行自定义，即便是 Hugo，你编写前端的交互仍旧需要使用 JavaScript，所以选择基于 JavaScript 的 Hexo 可以降低学习成本。（你若对 GO 有兴趣，仍然可以尝试使用 Hugo，但本教程将不会针对 Hugo 进行展开。）<br>所以对于新手来说，使用 Hexo 作为起始点，不失为一个好选择。（当然如果你有钱租服务器，并希望快速上手的话，就可以考虑考虑 WordPress 或者 Typecho）<br>这里顺带推荐一下小伙伴 <a target="_blank" rel="noopener" href="https://asuhe.jp/">染川瞳</a> 的 WordPress 主题 <a target="_blank" rel="noopener" href="https://github.com/mirai-mamori/Sakurairo">Sakurairo</a>，<a target="_blank" rel="noopener" href="https://guhub.cn/">阔落</a> 的 Typecho 主题 <a target="_blank" rel="noopener" href="https://github.com/BigCoke233/miracles">miracles</a>，都是很漂亮的主题。</p>
+</blockquote>
+<p>在终端中输入以下命令：</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">npm install hexo-cli -g
+# 如果安装失败，可能是没有权限，可以尝试头部加上 sudo 重新执行
+# sudo npm install hexo-cli -g</code></pre>
+
+<blockquote>
+<p><code>install</code> 自然是安装。<br><code>hexo-cli</code> 则是 <code>hexo</code> 的终端工具，可以帮助你生成一些模版文件，之后再用到。<br><code>-g</code> 代表的是全局安装。也就是在任何地方都可以使用，否则会只能在安装的目录下使用。</p>
+</blockquote>
+<p>此时，请先通过 <code>cd</code> 进入你本地电脑打算存储网站代码的文件夹目录。（或者右键文件夹 Git Bash Here）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/cd/3516393">cd | DOS 命令</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/cd/3516411">cd （LINUXSHELL 命令）</a></p>
+</blockquote>
+<p>譬如：</p>
+<blockquote>
+<p>注意：这里是你自定义的目录，请不要复制粘贴</p>
+</blockquote>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># &#39;#&#39; 字符后的文字代表注释，不需要输入
+# Windows
+cd C:\Users\YunYou\Documents\GitHub\
+# macOS
+# cd &#x2F;Users&#x2F;yunyou&#x2F;github&#x2F;</code></pre>
+
+<p>接下来输入：</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">hexo init 你的名字.github.io</code></pre>
+
+<blockquote>
+<p><code>hexo</code> 正是因为我们之前安装了 <code>hexo-cli</code> 这一个包，所以我们可以在终端中使用 <code>hexo</code> 这一命令。<br><code>init</code> 初始化博客的模版文件。后面跟的是你要新建的文件夹，最好和你此前新建的仓库名一致。</p>
+</blockquote>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># 进入你的博客文件夹
+cd 你的名字.github.io
+# 默认安装所有 &#96;package.json&#96; 文件中提到的包
+npm install
+# 你也可以缩写成 hexo s
+hexo server</code></pre>
+
+<p><code>server</code> 代表开启本地的 Hexo 服务器，这时你就可以打开浏览器，在地址栏中输入 <code>localhost:4000</code> 就可以看到本地的网页了。</p>
+<p>按 <code>Ctrl + C</code> 中断服务器的运行。</p>
+<p>至此，基础的模版页面便已经搭建好了。</p>
+<h4 id="使用-Hexo-主题"><a href="#使用-Hexo-主题" class="headerlink" title="使用 Hexo 主题"></a>使用 Hexo 主题</h4><p>Hexo 默认提供的是 <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-theme-landscape">hexo-theme-landscape</a> 主题。<br>默认主题样式简单，功能较少。所以大多数人并不会使用默认主题。</p>
+<p>这里将示范如何使用我自己开发的主题 <a target="_blank" rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun">hexo-theme-yun</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun"><img src="https://img.shields.io/github/stars/YunYouJun/hexo-theme-yun?style=social" alt="GitHub stars" loading="lazy"></a></p>
+<blockquote>
+<p>_(:з」∠)_ 顺带求 Star，代表收藏，就在点进链接后的右上角。</p>
+</blockquote>
+<p>你可以前往 <a href="https://www.yunyoujun.cn/">云游君的小站</a> 查看示例效果。</p>
+<p>Hexo-Theme-Yun 的速度检测</p>
+<p><img src="https://i.loli.net/2020/03/12/cUIuDPJfo379ZOk.png" alt="pagespeed-insights-score.png" loading="lazy"><em>谷歌 <a target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a></em></p>
+<p><img src="https://i.loli.net/2020/03/08/DhfLu5yngb7NZE2.png" alt="Audits - Lighthouse" loading="lazy"><em>谷歌浏览器 Audits - Lighthouse 检测分数</em></p>
+<p>当然，你也可以在 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes | Hexo</a> 发现更多有趣美丽的主题。使用方法大致相同。<br>当你具备一定开发能力时，你可以开发属于自己的主题，或者为 hexo-theme-yun 提交 <a target="_blank" rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun/pulls">PR</a> 添加你想要的功能。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun">hexo-theme-yun - GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://yun.yunyoujun.cn/">hexo-theme-yun 使用文档</a>：更详细的配置进阶指南。</li>
+<li><a href="https://www.yunyoujun.cn/">示例效果</a></li>
+</ul>
+<h5 id="下载-Hexo-主题"><a href="#下载-Hexo-主题" class="headerlink" title="下载 Hexo 主题"></a>下载 Hexo 主题</h5><p>进入终端（确保路径处于你此前使用 Hexo 初始化好的文件夹目录下，即 <code>xxx.github.io</code>，后简称为 <code>Hexo 目录</code>），输入以下命令。</p>
+<blockquote>
+<p>实际上你也可以直接在 VS Code 中使用终端。</p>
+</blockquote>
+<pre class="language-sh" data-language="sh"><code class="language-sh">git clone https:&#x2F;&#x2F;github.com&#x2F;YunYouJun&#x2F;hexo-theme-yun themes&#x2F;yun</code></pre>
+
+<blockquote>
+<p>这里便使用到了我们此前安装的 Git，<code>git clone</code> 即代表克隆（也就是复制的作用）我的主题（托管于 GitHub，链接便是主题所在的地址），<code>themes/yun</code> 则代表放在你 Hexo 文件夹下的 <code>themes/yun</code> 文件夹里（没有该文件夹会自动新建）。</p>
+</blockquote>
+<h5 id="编辑-Hexo-配置"><a href="#编辑-Hexo-配置" class="headerlink" title="编辑 Hexo 配置"></a>编辑 Hexo 配置</h5><blockquote>
+<p>右键文件夹使用 VS Code 打开，或者进入 VS Code 打开你存储网站的文件夹。此后操作都将默认你已处于该工作目录下。</p>
+</blockquote>
+<p>在你此前通过 Hexo 初始化生成的文件目录下，会存在一个 <code>_config.yml</code> 文件。</p>
+<blockquote>
+<p><code>yml</code> 是 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/YAML/1067697">YAML</a> 文件的后缀名，YAML 是 “YAML Ain’t a Markup Language”（YAML 不是一种标记语言） 的缩写，但它实际上还是一种标记语言。你可以将其理解为存储数据的一种文本格式，这也是其诞生的目的。 如果你听说过 JSON，那你就更能明白它是干什么的了。</p>
+</blockquote>
+<p>它是 Hexo 的配置文件，关于各配置选项的意义你可以查看 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">配置 | Hexo</a>。</p>
+<p>在 <code>_config.yml</code> 中找到 <code>theme</code> 这个字段，将其后的 <code>landscape</code> 修改为 <code>yun</code>。</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">theme</span><span class="token punctuation">:</span> yun</code></pre>
+
+<blockquote>
+<p>pug 是一种模板引擎，可以渲染为 HTML 字符串。类似的还有 ejs，swig 等，语法和设计理念有所不同。<br>stylus 是一种 CSS 预处理器，可以渲染为 CSS。类似的还有 scss，less，同样只是语法和设计理念有所差异。</p>
+</blockquote>
+<p>由于我的主题使用了 pug 和 stylus，而 Hexo 自带的一般是 ejs 与 stylus，所以你可能还需要输入以下命令安装渲染器。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">npm install hexo-render-pug hexo-renderer-stylus</code></pre>
+
+<p>这时再像此前那般使用 <code>hexo server</code> 重新启动服务器，你就可以看到一个不一样的主题风格的页面了。</p>
+<h5 id="自定义主题配置"><a href="#自定义主题配置" class="headerlink" title="自定义主题配置"></a>自定义主题配置</h5><p>当启动时，会使用主题的默认配置。但这不一定是你想要的。<br>所以你可以对主题进行一些自定义。</p>
+<p>主题的配置文件放在 <code>themes/yun/_config.yml</code> 文件中。<br>且慢，你<strong>最好不要直接修改主题的默认配置</strong>。倘若日后主题升级更新了怎么办，难道还要重新配置一遍吗？</p>
+<p>最好的解决方案就是在博客根目录下（不是主题目录）新建 <code>source/_data/yun.yml</code>。（若 <code>source/_data</code> 目录不存在，请新建）</p>
+<p>本主题将自定义配置与默认配置进行合并，因此你只需要在 <code>yun.yml</code> 文件中自定义你需要的配置即可，其余仍将自动采用默认配置。</p>
+<p>譬如我们需要更换头像。在 <code>yun.yml</code> 中填写。</p>
+<blockquote>
+<p>你可以在 <code>source</code> 文件夹下新建 <code>images</code> 文件夹，用来存储你的图片。<br>也可以使用 <a target="_blank" rel="noopener" href="https://sm.ms/">SM.MS</a> 等图床工具上传你的图片文件，获取在线链接。</p>
+</blockquote>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">avatar</span><span class="token punctuation">:</span>
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> /images/avatar.jpg <span class="token comment"># 你的头像图片地址</span>
+  <span class="token key atrule">rounded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">opacity</span><span class="token punctuation">:</span> <span class="token number">1</span></code></pre>
+
+<p>更换主题色彩，比如换成黑色，黑色的十六进制颜色代码是 <code>#000000</code>。</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">colors</span><span class="token punctuation">:</span>
+  <span class="token key atrule">primary</span><span class="token punctuation">:</span> <span class="token string">"#000000"</span></code></pre>
+
+<p>这时你的主题色调就会变为黑色。</p>
+<p>这只是一个配置项的简单示例，更多配置你可以参考 <a target="_blank" rel="noopener" href="https://yun.yunyoujun.cn/">Yun 主题文档</a> 或直接在 <code>theme/yun/_config.yml</code> 中查看，并根据自己的需要进行配置。</p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p>至今我们的工作都是在本地进行，想必你也很想放到线上与小伙伴们分享。<br>这便轮到了 GitHub Pages 的出场，不过 GitHub Pages 只支持纯静态文件。</p>
+<p>所以我们需要使用以下命令先来生成站点的静态文件。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># 如果进行多次生成，为了避免受错误缓存影响，最好使用 hexo clean 先清除一遍。
+hexo generate
+# 缩写为 hexo g</code></pre>
+
+<p>此时你的文件夹目录下会出现 <code>public</code> 这个文件夹，里面存放的就是你站点的静态文件。</p>
+<h3 id="与远程仓库建立关联"><a href="#与远程仓库建立关联" class="headerlink" title="与远程仓库建立关联"></a>与远程仓库建立关联</h3><p>接下来我们将本地的仓库与此前在 GitHub 上建立的仓库建立关联。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">git init # 初始化 Git 仓库，只需要执行一次即可</code></pre>
+
+<p>在将其部署到 GitHub Pages 上之前，我们最好先建立一个分支。</p>
+<blockquote>
+<p>什么是分支？<br>Git 提供了版本管理功能，其中还有一个分支功能，你现在可以简单地将其理解为平行世界。</p>
+</blockquote>
+<p><code>你的名字.github.io</code> 部署后，GitHub Pages 将默认使用你的 master 分支作为静态文件部署。<br>所以我们最好新建一个 hexo 分支（命名无所谓）用来存储 Hexo 地源代码，master 分支则用来存储部署后的静态文件。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">git checkout -b hexo</code></pre>
+
+<p>这时便成功建立了一个 hexo 分支。（此后的工作都将在 hexo 分支下进行）</p>
+<p>你可以通过 <code>git branch -v</code> 来查看当前有哪些分支，使用 <code>git branch 分支名</code> 来切换到对应的分支。</p>
+<blockquote>
+<p><a href="https://www.yunyoujun.cn/note/git-learn-note/">Git 学习笔记</a></p>
+</blockquote>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>为了更方便的部署到 GitHub Pages，Hexo 提供了 <code>hexo-deployer-git</code> 插件。</p>
+<p>老规矩，安装。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">npm install hexo-deployer-git</code></pre>
+
+<p>在 <code>_config.yml</code> 中配置。</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> 你此前新建的仓库的链接 <span class="token comment"># 比如：https://github.com/YunYouJun/yunyoujun.github.io</span>
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master <span class="token comment"># 默认使用 master 分支</span>
+  <span class="token key atrule">message</span><span class="token punctuation">:</span> Update Hexo Static Content <span class="token comment"># 你可以自定义此次部署更新的说明</span></code></pre>
+
+<p>保存，部署！</p>
+<blockquote>
+<p>第一次可能需要你输入用户名与密码。<br>密码输入的时候不会出现 ***，不要害怕，已经输入进去了。</p>
+</blockquote>
+<pre class="language-sh" data-language="sh"><code class="language-sh">hexo deploy</code></pre>
+
+<p>等待完成后，打开网址 <code>https://你的名字.github.io</code> 就能看到你的线上网站了。</p>
+<blockquote>
+<p>使用 https，http 可能无法正常打开。HTTPS 是多了安全加密的 HTTP，Chrome 浏览器已经默认会显示 <code>http</code> 链接为不安全。<br>为了安全，建议开启强制 https 跳转。<code>项目地址页面 -&gt; Settings -&gt; Options -&gt; GitHub Pages -&gt; Enforce HTTPS</code>。（翻到下面）<br>此时，http 网址会自动重定向到 https</p>
+</blockquote>
+<h3 id="备份与自动部署"><a href="#备份与自动部署" class="headerlink" title="备份与自动部署"></a>备份与自动部署</h3><p>我们当前只是将生成的静态文件部署到了云端。</p>
+<p>为了以防万一，我们应该将网站的源代码文件也推送到 GitHub 仓库备份。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># 与远程 Git 仓库建立连接，只此一次即可
+git remote add origin https:&#x2F;&#x2F;github.com&#x2F;你的用户名&#x2F;你的名字.github.io</code></pre>
+
+<p>接下来准备提交，这几句命令将是你以后每次备份所需要输入。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># 添加到缓存区
+git add -A
+git commit -m &quot;这次做了什么更改，简单描述下即可&quot;
+# 推送至远程仓库
+git push
+# 第一次提交，你可能需设置一下默认提交分支
+# git push --set-upstream origin hexo</code></pre>
+
+<p>每次推送都要输入这三条命令，你可能觉得有些麻烦。<br>那么你可以编写 bash 脚本。</p>
+<p>譬如，在根目录下新建 <code>update.sh</code>。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># 如果没有消息后缀，默认提交信息为 &#96;:pencil: update content&#96;
+info&#x3D;$1
+if [&quot;$info&quot; &#x3D; &quot;&quot;];
+then info&#x3D;&quot;:pencil: update content&quot;
+fi
+git add -A
+git commit -m &quot;$info&quot;
+git push origin hexo</code></pre>
+
+<p>此后更新的话，只需要在终端执行 <code>sh update.sh</code> 即可。</p>
+<p>更新麻烦，每次部署也很麻烦，可以使用持续集成进行自动部署。</p>
+<blockquote>
+<p>什么是持续集成？<br>持续集成是一种软件开发实践。对软件进行自动化构建，以此来发现错误。<br>Travis CI 就是一个线上持续集成服务的提供商。它可以拉取你每次推送到 GitHub 上的代码，然后根据你的要求对其进行构建。<br>我们可以趁机让它自动生成网站静态文件，然后自动帮我们部署。<br>除此之外，你还可以使用 <a target="_blank" rel="noopener" href="https://help.github.com/en/actions/getting-started-with-github-actions/about-github-actions">GitHub Actions</a> ，<a target="_blank" rel="noopener" href="https://www.netlify.com/">Netlify</a> 等服务。<br>GitHub Actions 相比 Travis 等，自身便拥有仓库的 Token，不再需要额外设置，可以直接使用 <code>secrets.GITHUB_TOKEN</code>。<br>推荐一个专门用来部署 gh-pages 的 Actions <a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages">actions-gh-pages</a></p>
+</blockquote>
+<p>关于更多更具体的自动化部署方案和操作步骤，你可以参考我的小伙伴 ChrAlpha 的 <a target="_blank" rel="noopener" href="https://blog.ichr.me/post/automated-deployment-of-serverless-static-blog/">初探无后端静态博客自动化部署方案</a>。</p>
+<p>他在文章中详细介绍了 Netlify 、GitHub Actions 和 Travis CI 的部署方法。</p>
+<p>你也可以参考 Hexo 的官方文档 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages">将 Hexo 部署到 GitHub Pages</a></p>
+<p>我就不在此画蛇添足。</p>
+<hr>
+<p>当然还有个更简便的方法，直接参考我的 <a target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/blob/hexo/.github/workflows/gh-pages.yml">gh-pages.yml</a>。</p>
+<p>去掉夹在 <code>yarn install</code> 与 <code>yarn build</code> 之间的 <code>algolia</code> 部分，直接粘贴到你的 <code>.github/workflows/</code> 文件夹（自己新建）下 <code>xxx.yml</code> 文件里即可。</p>
+<p>推送后便可直接自动部署。</p>
+<p>至此，你的站点便基本搭建完成，此后继续对主题进行自定义吧。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://yun.yunyoujun.cn/">Yun 主题文档</a></p>
+</blockquote>
+<h3 id="开始写作"><a href="#开始写作" class="headerlink" title="开始写作"></a>开始写作</h3><h4 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h4><p>输入以下命令即可新建 <code>xxx.md</code> 文件。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">hexo new post xxx</code></pre>
+
+<blockquote>
+<p><code>md</code> 是 <code>Markdown</code> 的后缀名，是一种简洁方便的文本标记语言。你只需要记住简单的几种语法，就可以快速进行编写。<br>为什么使用 Markdown？<br>首先 Hexo 本身就是将 Markdown 转化为静态的 Html 文件，来方便用户编写文章。<br>Markdown 就好似介于 Word 与 TXT 文本之间。Word 体积大、大部分功能实际上根本用不到，且最后的文档常常带有许多冗余信息。<br>而 TXT 却无法实现加粗、标题、下划线、水平分割线等常用的功能。<br>（这里所说的 TXT 只是一种纯文本格式的代称，实际上 Markdown 也是纯文本文件，不过通过语法和 Markdown 编译器，我们就可以看到一些简单的样式。）</p>
+</blockquote>
+<p>譬如本文就是通过 Markdown 编写。</p>
+<pre class="language-md" data-language="md"><code class="language-md"># 一级标题
+
+## 二级标题
+
+**加粗文字**</code></pre>
+
+<blockquote>
+<p>更多语法（虽然说是更多，但是其实也没多少）：<a target="_blank" rel="noopener" href="https://github.com/younghz/Markdown">Markdown 基本语法</a></p>
+</blockquote>
+<p>这是我写的一个 Markdown 样式：<a href="https://www.yunyoujun.cn/star-markdown-css/">star-markdown-css</a></p>
+<p>上面是渲染过后的效果，你可以与其 Markdown 的<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/YunYouJun/star-markdown-css/master/demo/md/demo.md">纯文本原文</a>进行对比。</p>
+<h4 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h4><p>你可以新建一些自己的自定义页面。</p>
+<p>譬如直接在 Hexo 目录下的 <code>source</code> 文件夹下直接新建 HTML 进行编写。</p>
+<p>也可以通过以下命令来新建页面。（当然还是 Markdown，不过也是可以在 Markdown 里写 HTML 的，也会被渲染出来。）</p>
+<pre class="language-md" data-language="md"><code class="language-md">hexo new page xxx</code></pre>
+
+<p>说到这里，就不得不提一提本主题的特色功能了。</p>
+<p>生成你的老婆列表页面。按一定格式书写即可。见<a target="_blank" rel="noopener" href="https://yun.yunyoujun.cn/guide/page.html#girls">文档</a>。</p>
+<blockquote>
+<p>预览：<a href="https://www.yunyoujun.cn/girls/">Lovely Girls</a></p>
+</blockquote>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="视频？"><a href="#视频？" class="headerlink" title="视频？"></a>视频？</h3><p>没有视频，一是懒，二是文字更利于更新勘误。</p>
+<p>以及文章中将会频繁出现参考链接，更方便使用。</p>
+<h3 id="如何绑定你的自定义域名？"><a href="#如何绑定你的自定义域名？" class="headerlink" title="如何绑定你的自定义域名？"></a>如何绑定你的自定义域名？</h3><p>首先，你得有个自己的域名。</p>
+<blockquote>
+<p>避免广告嫌疑，你可以自行前往相关域名提供商购买。<br><del>但是如果你有幸能看到谷歌广告（概率较小），可以考虑点一点。</del></p>
+</blockquote>
+<!-- > 原本我的确是这么写的。
+> 不过咱的确一直嫖的是[腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=1040&cps_key=598123cb511ac35c74d38b5a49392812&from=console)，而它又有一个[推广链接](https://cloud.tencent.com/act/cps/redirect?redirect=1040&cps_key=598123cb511ac35c74d38b5a49392812&from=console)。
+> 而你通过我这个[链接](https://cloud.tencent.com/act/cps/redirect?redirect=1040&cps_key=598123cb511ac35c74d38b5a49392812&from=console)访问腾讯云注册购买产品，也不会多花钱。所以就不妨[点一下](https://cloud.tencent.com/act/cps/redirect?redirect=1040&cps_key=598123cb511ac35c74d38b5a49392812&from=console)？
+> 「你看，很简单吧，谁都不会受伤的世界完成了。」——比企谷八幡 -->
+
+<p>并使用 CNAME 解析到 <code>你的名字.github.io</code>。（当然 A 记录直接解析到 GitHub Pages IP 地址也可以。）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">Managing a custom domain for your GitHub Pages site</a></p>
+</blockquote>
+<p>在 <code>Hexo</code> 工作目录下 <code>source</code> 文件夹下新建 <code>CNAME</code> 文件（没有后缀名）。</p>
+<blockquote>
+<p>CNAME 即相当于告诉 GitHub 允许将 xxx.github.io 为你的域名提供服务。<br>source 目录下的文件除了特殊的 markdown 会被解析为 html，其余都会原样复制到生成的静态文件夹中。<br>所以你需要在 source 文件夹下建有 CNAME，它会在生成静态文件时，将 CNAME 拷贝到静态文件夹并部署到 master 分支。<br>如果只是在 GitHub 上设置（<code>项目地址页面 -&gt; Settings -&gt; Options -&gt; GitHub Pages -&gt; Custom domain</code>），它会自动添加到 master 分支上，但随后不包含 CNAME 的部署会将其覆盖。</p>
+</blockquote>
+<p>内容填写你的域名即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://help.github.com/en/github/working-with-github-pages/about-custom-domains-and-github-pages">About custom domains and GitHub Pages</a></p>
+</blockquote>
+<h3 id="备案"><a href="#备案" class="headerlink" title="备案"></a>备案</h3><p>如果想要使用国内的一些服务，比如 CDN，不备案确实寸步难行。</p>
+<p>此处我指的是 ICP 备案，并非公安备案。（实际上我从来没有进行过公安备案，且目前在使用服务时，并未受到任何相关限制。）</p>
+<blockquote>
+<p>我只在腾讯云备案过，所以只能分享一点此方面的经验。</p>
+</blockquote>
+<p>国内备案往往意味着你还需要一台国内的服务器，譬如通过腾讯云备案时会需要你设置关联的服务器（阿里云应当也是如此）。<br>实际上你的网站并不一定得在这台服务器上，即便你只是免费试用了一个月，但是备案成功了，之后过期了对备案也不会有何影响。</p>
+<blockquote>
+<p>也就是说你完全可以使用学生优惠（10 元左右）购买一个月的云服务器，用于关联，并在这个月内抓紧备案好，此后云服务器过期不会影响备案问题。<br>学生优惠的话 <a target="_blank" rel="noopener" href="https://www.aliyun.com/minisite/goods?userCode=ixykjqj2">阿里云</a> 或者 <a target="_blank" rel="noopener" href="https://url.cn/PLQYbz6n">腾讯云</a> 都有。</p>
+</blockquote>
+<p>备案前需要注意的几点就是：</p>
+<ul>
+<li>确定你的域名是否可以备案</li>
+<li>关闭评论区</li>
+<li>提交备案时的备注说明不得含有 <code>交流</code> 字样</li>
+<li>首页不能含有其他网站的直达链接</li>
+<li>遵纪守法无不良信息（这是当然的）</li>
+</ul>
+<p>你也可以直接关停网站，等待备案成功后再重新打开。（今后每年偶尔会复查，但相对会宽松许多。）</p>
+<p>此后，按照网站指引的备案步骤一步步来即可。（以前还要等待幕布寄送拍照，现在可以直接在手机上人脸验证）</p>
+<p>备案成功后页脚必须清晰地展示备案号，且备案号含有指向 <a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">http://www.beian.miit.gov.cn/</a> 的超链接。</p>
+<h3 id="更多可能有帮助的内容"><a href="#更多可能有帮助的内容" class="headerlink" title="更多可能有帮助的内容"></a>更多可能有帮助的内容</h3><ul>
+<li><a href="https://www.yunyoujun.cn/note/baidu-seo-about-github-pages/">让百度收录你的 GitHub Pages 博客 - 云游君的小站</a></li>
+<li><a href="https://www.yunyoujun.cn/note/use-cdn-speed-up-site/">使用 CDN 加速你的 GitHub Pages 网站 - 云游君的小站</a></li>
+</ul>
+<h3 id="其他平台"><a href="#其他平台" class="headerlink" title="其他平台"></a>其他平台</h3><p>毕竟自己的站点可能还是不会有什么人看，所以发到其他平台了（然而还是没有人）。不过在<a href="https://www.yunyoujun.cn/share/how-to-build-your-site/">这里</a>阅读体验应该是最好的。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113209647">教你如何从零开始搭建一个属于自己的网站 - 云游君的文章 - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv5108842">教你如何从零开始搭建一个属于自己的网站 - bilibili 专栏</a>（不支持外链、代码高亮、Markdown，太难了）</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1609701">教你如何从零开始搭建一个属于自己的网站 - 腾讯云</a>（该说不愧是腾讯吗？SEO 绝了。最晚（晚了几个星期）发的，次日搜全名就变百度第一条了。）</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>个人网站同样可以用来做许多事情，你可以将其用来记录生活、回忆、创作、学习笔记、开发经验等（包括作为一个试验平台）。<br>可以与熟悉的人分享，也可以作为另一个世界另一个自己的展示。</p>
+<p>多年后，回看起自己当初写下的内容，未尝不是件有趣的事情。</p>
+<p>善始者众，善终者寡。</p>
+<blockquote>
+<p>臣闻善作者，不必善成；善始者，不必善终。「史记·乐毅列传」</p>
+</blockquote>
+<p>希望大家能有毅力坚持下去，不忘初心。</p>
+<blockquote>
+<p>永远相信美好的事情即将发生</p>
+</blockquote>
+<p>如果还有其他小问题，可以到 <a target="_blank" rel="noopener" href="https://shang.qq.com/wpa/qunwpa?idkey=3bd19a05aaccb2b60c396295c8617b3a9e667821a495e8cd7e1698ff95ab61c6">QQ 群</a>（389401003）里反馈。</p>
+<blockquote>
+<p>如果是更通用的问题，最好在评论中进行反馈，这样别的同学也能看到，不需要重复提问。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/about/hexo-qrcode.jpg" alt="hexo-qrcode" loading="lazy"></p>
+<hr>
+<p>Q.E.D.</p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>云游君</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.yunyoujun.cn/share/how-to-build-your-site/" title="教你如何从零开始搭建一个属于自己的网站">https://www.yunyoujun.cn/share/how-to-build-your-site/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/share/i-am-er-ci-yuan-and-try-to-prove/" rel="prev" title="👴就是二次元，故尝试证明。"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">👴就是二次元，故尝试证明。</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/note/use-cdn-speed-up-site/" rel="next" title="使用 CDN 加速你的 GitHub Pages 网站"><span class="post-nav-text">使用 CDN 加速你的 GitHub Pages 网站</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>因为 Valine 我保不准哪天就会因为种种原因抛弃它了。</span><br><span>所以如果是重要的评论，建议跳转 GitHub Issues 发表。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+教你如何从零开始搭建一个属于自己的网站">GitHub Issues</a></div><div id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  const valineConfig = {"enable":true,"appId":"4x0IwQ1sy95mOGQDTO8MYCeA-gzGzoHsz","appKey":"9loqwF3UDklPDHaP9IN2uwN8","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"requiredFields":["nick","mail"],"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = window.location.pathname
+  new Valine(valineConfig)
+}
+setTimeout(initValine, 1000)</script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17038157号</a></div><div class="copyright"><span>&copy; 2016 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 云游君</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.9.5</span></div><div class="footer-custom-text"><a style="display:inline-block" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="upyun"/></a></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script defer src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script defer src="/js/search/algolia-search.js"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div class="algolia-pagination" id="algolia-pagination"></div></div></div></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

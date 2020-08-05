@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="云游君"><meta name="copyright" content="云游君"><meta name="generator" content="Hexo 5.0.0"><meta name="theme" content="hexo-theme-yun"><title>Linux 学习笔记 | 云游君的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.17/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_stqaphw3j4.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => <!-- hexo-inject:begin --><!-- hexo-inject:end -->{
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><link rel="alternate" href="/atom.xml" title="云游君的小站" type="application/atom+xml"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.5","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://elpsy.vercel.app/api/words/young"},"algolia":{"appID":"CJXXAGRCYN","apiKey":"ae1966d2aeab22bf9335679f45d2cd9a","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容: ${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><link rel="preconnect" href="https://stats.g.doubleclick.net" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=UA-121354150-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-121354150-1');</script><script data-ad-client="ca-pub-2245427233262012" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M9KWR9L');</script><!-- End Google Tag Manager --><meta name="description" content="记录一些笔记与坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 学习笔记">
+<meta property="og:url" content="https://www.yunyoujun.cn/note/linux-learn-note/index.html">
+<meta property="og:site_name" content="云游君的小站">
+<meta property="og:description" content="记录一些笔记与坑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-08T09:56:47.000Z">
+<meta property="article:modified_time" content="2019-04-08T09:56:47.000Z">
+<meta property="article:author" content="云游君">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="云游君"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="云游君"></a><div class="site-author-name"><a href="/about/">云游君</a></div><a class="site-name" href="/about/site.html">云游君的小站</a><sub class="site-subtitle">All at sea.</sub><div class="site-desciption">希望能成为一个有趣的人</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">107</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">15</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">68</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://shang.qq.com/wpa/qunwpa?idkey=c929e704022704d8cced9ec355d44a3fa7ad34aea12cef1de03d75d3d7d5b059" title="QQ 群" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/YunYouJun" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/jizhideyunyoujun" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.douban.com/people/yunyoujun/" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=247102977" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/yunyoujun/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/1579790" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/YunYouJun" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/elpsycn" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:me@yunyoujun.cn" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.now.sh/" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">1.</span> <span class="toc-text">Ref</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-number">2.</span> <span class="toc-text">Install</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Version"><span class="toc-number">2.1.</span> <span class="toc-text">Version</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Deepin"><span class="toc-number">2.1.1.</span> <span class="toc-text">Deepin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Virtual-Machine"><span class="toc-number">2.2.</span> <span class="toc-text">Virtual Machine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Some-tools"><span class="toc-number">2.3.</span> <span class="toc-text">Some tools</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nscd"><span class="toc-number">2.3.1.</span> <span class="toc-text">nscd</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dev"><span class="toc-number">3.</span> <span class="toc-text">Dev</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell"><span class="toc-number">3.1.</span> <span class="toc-text">Shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oh-my-zsh"><span class="toc-number">3.1.1.</span> <span class="toc-text">oh-my-zsh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Other"><span class="toc-number">3.1.2.</span> <span class="toc-text">Other</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git"><span class="toc-number">3.2.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git-config-%E2%80%93global"><span class="toc-number">3.2.1.</span> <span class="toc-text">git config –global</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js"><span class="toc-number">3.3.</span> <span class="toc-text">Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-nvm"><span class="toc-number">3.3.1.</span> <span class="toc-text">安装 nvm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Node"><span class="toc-number">3.3.2.</span> <span class="toc-text">安装 Node</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Python3"><span class="toc-number">3.3.3.</span> <span class="toc-text">安装 Python3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command"><span class="toc-number">4.</span> <span class="toc-text">Command</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-apt-get"><span class="toc-number">4.1.</span> <span class="toc-text">apt apt-get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E6%95%B0%E6%8D%AE%E7%9B%98"><span class="toc-number">4.2.</span> <span class="toc-text">挂载数据盘</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FAQ"><span class="toc-number">5.</span> <span class="toc-text">FAQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Virtual-Box-%E5%AE%89%E8%A3%85-CentOS-%E6%97%B6%EF%BC%8C%E9%BC%A0%E6%A0%87%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="toc-number">5.1.</span> <span class="toc-text">Virtual Box 安装 CentOS 时，鼠标不显示</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.yunyoujun.cn/note/linux-learn-note/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="云游君"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="云游君的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Linux 学习笔记<a class="post-edit-link" href="https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/_posts/note/linux-learn-note.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2019-04-08 17:56:47" itemprop="dateCreated datePublished" datetime="2019-04-08T17:56:47+08:00">2019-04-08</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">698</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">3m</span></span></span><span class="leancloud_visitors" id="/note/linux-learn-note/" data-flag-title="Linux 学习笔记"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E4%BA%91%E6%B8%B8%E7%9A%84%E5%B0%8F%E7%AC%94%E8%AE%B0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">云游的小笔记</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E5%AD%A6%E4%B9%A0/" style="--text-color:saddlebrown"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">学习</span></a><a class="tag" href="/tags/%E7%AC%94%E8%AE%B0/" style="--text-color:dimgray"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">笔记</span></a><a class="tag" href="/tags/Linux/" style="--text-color:#2577b1"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Linux</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>记录一些笔记与坑</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><a id="more"></a>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/">鸟哥的 Linux 私房菜</a></li>
+</ul>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h3><h4 id="Deepin"><a href="#Deepin" class="headerlink" title="Deepin"></a><a target="_blank" rel="noopener" href="https://www.deepin.org/">Deepin</a></h4><ul>
+<li><a href="../deepin-use-note/">Deepin 使用笔记</a></li>
+</ul>
+<h3 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/">Virual Box</a></li>
+</ul>
+<h3 id="Some-tools"><a href="#Some-tools" class="headerlink" title="Some tools"></a>Some tools</h3><h4 id="nscd"><a href="#nscd" class="headerlink" title="nscd"></a>nscd</h4><p>管理 DNS 缓存</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">sudo apt install nscd
+sudo service nscd restart
+# or
+# sudo &#x2F;etc&#x2F;init.d&#x2F;nscd restart</code></pre>
+
+<h2 id="Dev"><a href="#Dev" class="headerlink" title="Dev"></a>Dev</h2><h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><h4 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a><a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a></h4><p>需要先安装 <code>zsh</code></p>
+<p>GitHub 上星数很多的一个项目，自己还没有搞明白，不过大致是可以帮助更方便使用 bash 的工具。</p>
+<p>配置插件</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># vim ~&#x2F;.zshrc
+plugins&#x3D;(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  node
+  npm
+  python
+  sudo
+  autojump
+)</code></pre>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh/wiki">oh-my-zsh | wiki</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/yunyoujun/notes/oh-my-zsh">oh-my-zsh 常用插件配置指南</a></li>
+</ul>
+<h4 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h4><p>配置环境变量</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">code ~&#x2F;.zshrc
+# 进入文件
+export PATH&#x3D;&quot;应用程序路径:$PATH&quot;
+# $PATH 不可丢掉，是环境中别的变量，冒号为分隔符。</code></pre>
+
+<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><pre class="language-sh" data-language="sh"><code class="language-sh">sudo apt-get install git</code></pre>
+
+<h4 id="git-config-–global"><a href="#git-config-–global" class="headerlink" title="git config –global"></a>git config –global</h4><pre class="language-sh" data-language="sh"><code class="language-sh">git config --global user.email &quot;me@yunyoujun.cn&quot;
+git config --global user.name &quot;YunYouJun&quot;</code></pre>
+
+<p>记住密码</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">git config --global credential.helper store</code></pre>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8">Git-工具-凭证存储</a></p>
+</blockquote>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a><a target="_blank" rel="noopener" href="https://github.com/nodejs/help/wiki/Installation">Node.js</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm">nvm</a></p>
+<p>Linux 安装 <code>Node.js</code> 的最方便的工具</p>
+<p>如果速度太慢，可以更换为国内镜像：</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">vim ~&#x2F;.zshrc
+export NVM_NODEJS_ORG_MIRROR&#x3D;http:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;node</code></pre>
+
+<h4 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm"></a>安装 nvm</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm#installation-and-update">https://github.com/nvm-sh/nvm#installation-and-update</a><br>参考官方文档使用最新的安装脚本</p>
+</blockquote>
+<p>如果仍然 <code>command not found</code>，可以添加进 <code>~/.bashrc</code>, <code>~/.zshrc</code>。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh"># vim ~&#x2F;.zshrc
+export NVM_DIR&#x3D;&quot;$HOME&#x2F;.nvm&quot;
+[ -s &quot;$NVM_DIR&#x2F;nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR&#x2F;nvm.sh&quot;  # This loads nvm
+[ -s &quot;$NVM_DIR&#x2F;bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR&#x2F;bash_completion&quot;  # This loads nvm bash_completion</code></pre>
+
+<h4 id="安装-Node"><a href="#安装-Node" class="headerlink" title="安装 Node"></a>安装 Node</h4><pre class="language-sh" data-language="sh"><code class="language-sh"># install latest node
+nvm install node
+# install stable node
+nvm install stable</code></pre>
+
+<h4 id="安装-Python3"><a href="#安装-Python3" class="headerlink" title="安装 Python3"></a>安装 Python3</h4><p>使用 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/python/3.7.3/">淘宝镜像</a> 快一些</p>
+<p><a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/python/3.7.3/">https://npm.taobao.org/mirrors/python/3.7.3/</a></p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">wget https:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;python&#x2F;3.7.3&#x2F;Python-3.7.3.tgz
+tar -xvzf Python-3.7.3.tgz
+cd Python-3.7.3
+# 这个需要提前安装 否则 make install 可能报错
+sudo apt-get install libffi-dev
+sudo apt install libssl-dev libncurses5-dev libsqlite3-dev libreadline-dev libtk8.5 libgdm-dev libdb4o-cil-dev libpcap-dev
+.&#x2F;configure --with-ssl
+make
+sudo make install</code></pre>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/45954528/pip-is-configured-with-locations-that-require-tls-ssl-however-the-ssl-module-in">pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available</a></p>
+</blockquote>
+<p>临时解决方案</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">pip3 install -i http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F; --trusted-host mirrors.aliyun.com ssl xxx</code></pre>
+
+<p>通用解决方案</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">sudo apt install libssl-dev libncurses5-dev libsqlite3-dev libreadline-dev libtk8.5 libgdm-dev libdb4o-cil-dev libpcap-dev
+# 随后重新编译安装</code></pre>
+
+<h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><h3 id="apt-apt-get"><a href="#apt-apt-get" class="headerlink" title="apt apt-get"></a>apt apt-get</h3><p><code>apt</code> = <code>apt-get</code> + <code>apt-cache</code> + <code>apt-config</code></p>
+<p>简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">sudo apt update
+sudo apt install xxx
+sudo apt remove xxx</code></pre>
+
+<blockquote>
+<p>常用命令</p>
+</blockquote>
+<ul>
+<li>为文件目录树全部赋予权限：<code>chmod 775 -R filename</code></li>
+<li>迭代删除文件夹中所有内容：<code>rm -rf &amp;lt;filename or dirname&amp;gt;</code></li>
+</ul>
+<h3 id="挂载数据盘"><a href="#挂载数据盘" class="headerlink" title="挂载数据盘"></a>挂载数据盘</h3><ul>
+<li>查看已有磁盘：<code>fdisk -l</code></li>
+<li>挂载磁盘：<code>mount /dev/vdb1 /home/data</code></li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="Virtual-Box-安装-CentOS-时，鼠标不显示"><a href="#Virtual-Box-安装-CentOS-时，鼠标不显示" class="headerlink" title="Virtual Box 安装 CentOS 时，鼠标不显示"></a>Virtual Box 安装 CentOS 时，鼠标不显示</h3><ul>
+<li>Virtual Box 6.0</li>
+<li>CentOS 7.x</li>
+</ul>
+<p>Solution:</p>
+<blockquote>
+<p>设置 -&gt; 显示 -&gt; 屏幕 -&gt; 显卡控制器 -&gt; 切换为 VBoxVGA</p>
+</blockquote>
+<hr>
+<p>To Be Continued.</p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>云游君</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.yunyoujun.cn/note/linux-learn-note/" title="Linux 学习笔记">https://www.yunyoujun.cn/note/linux-learn-note/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/share/to-lovely-junior/" rel="prev" title="写给可爱的学弟学妹们"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">写给可爱的学弟学妹们</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/note/javascript-learn-note/" rel="next" title="JavaScript 学习笔记"><span class="post-nav-text">JavaScript 学习笔记</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>因为 Valine 我保不准哪天就会因为种种原因抛弃它了。</span><br><span>所以如果是重要的评论，建议跳转 GitHub Issues 发表。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+Linux 学习笔记">GitHub Issues</a></div><div id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  const valineConfig = {"enable":true,"appId":"4x0IwQ1sy95mOGQDTO8MYCeA-gzGzoHsz","appKey":"9loqwF3UDklPDHaP9IN2uwN8","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"requiredFields":["nick","mail"],"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = window.location.pathname
+  new Valine(valineConfig)
+}
+setTimeout(initValine, 1000)</script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17038157号</a></div><div class="copyright"><span>&copy; 2016 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 云游君</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.9.5</span></div><div class="footer-custom-text"><a style="display:inline-block" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="upyun"/></a></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script defer src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script defer src="/js/search/algolia-search.js"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div class="algolia-pagination" id="algolia-pagination"></div></div></div></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

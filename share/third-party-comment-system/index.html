@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="云游君"><meta name="copyright" content="云游君"><meta name="generator" content="Hexo 5.0.0"><meta name="theme" content="hexo-theme-yun"><title>第三方评论系统之我见 | 云游君的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="none" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.17/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_stqaphw3j4.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => <!-- hexo-inject:begin --><!-- hexo-inject:end -->{
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><link rel="alternate" href="/atom.xml" title="云游君的小站" type="application/atom+xml"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.5","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://elpsy.vercel.app/api/words/young"},"algolia":{"appID":"CJXXAGRCYN","apiKey":"ae1966d2aeab22bf9335679f45d2cd9a","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容: ${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><link rel="preconnect" href="https://stats.g.doubleclick.net" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=UA-121354150-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-121354150-1');</script><script data-ad-client="ca-pub-2245427233262012" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M9KWR9L');</script><!-- End Google Tag Manager --><meta name="description" content="静态博客纵有万般好，但不得不承认其常常需要很多奇技淫巧，方能实现甚至无法实现动态网站仅需数行代码便可实现的功能。 评论系统便是其代表之一。 我尝试过数种第三方评论系统（Disqus&#x2F;Gitalk&#x2F;Valine&#x2F;LiveRe(来必力)&#x2F;畅言），并在其中反复横跳，丢失了不少可爱的评论，也很遗憾未能找到一款真正百无挑剔的评论系统。  一个事物的发展往往是一个波浪式前进、循环往复式上升的过程。  我将简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三方评论系统之我见">
+<meta property="og:url" content="https://www.yunyoujun.cn/share/third-party-comment-system/index.html">
+<meta property="og:site_name" content="云游君的小站">
+<meta property="og:description" content="静态博客纵有万般好，但不得不承认其常常需要很多奇技淫巧，方能实现甚至无法实现动态网站仅需数行代码便可实现的功能。 评论系统便是其代表之一。 我尝试过数种第三方评论系统（Disqus&#x2F;Gitalk&#x2F;Valine&#x2F;LiveRe(来必力)&#x2F;畅言），并在其中反复横跳，丢失了不少可爱的评论，也很遗憾未能找到一款真正百无挑剔的评论系统。  一个事物的发展往往是一个波浪式前进、循环往复式上升的过程。  我将简单">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cos.yunyoujun.cn/blog/posts/jump-repeatedly.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/05/17/FOLHuTXn1JZYmrb.jpg">
+<meta property="article:published_time" content="2020-05-17T05:30:40.000Z">
+<meta property="article:modified_time" content="2020-05-17T05:30:40.000Z">
+<meta property="article:author" content="云游君">
+<meta property="article:tag" content="评测">
+<meta property="article:tag" content="Disqus">
+<meta property="article:tag" content="Gitalk">
+<meta property="article:tag" content="Valine">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cos.yunyoujun.cn/blog/posts/jump-repeatedly.jpg"><script src="/js/ui/mode.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="云游君"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="云游君"></a><div class="site-author-name"><a href="/about/">云游君</a></div><a class="site-name" href="/about/site.html">云游君的小站</a><sub class="site-subtitle">All at sea.</sub><div class="site-desciption">希望能成为一个有趣的人</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">107</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">15</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">68</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://shang.qq.com/wpa/qunwpa?idkey=c929e704022704d8cced9ec355d44a3fa7ad34aea12cef1de03d75d3d7d5b059" title="QQ 群" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/YunYouJun" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/jizhideyunyoujun" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.douban.com/people/yunyoujun/" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=247102977" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/yunyoujun/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/1579790" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/YunYouJun" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/elpsycn" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:me@yunyoujun.cn" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.now.sh/" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-send-plane-2-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">评论系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Disqus"><span class="toc-number">1.1.</span> <span class="toc-text">Disqus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gitalk"><span class="toc-number">1.2.</span> <span class="toc-text">Gitalk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Valine"><span class="toc-number">1.3.</span> <span class="toc-text">Valine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%85%E8%A8%80"><span class="toc-number">1.4.</span> <span class="toc-text">畅言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E5%BF%85%E5%8A%9B-LiveRe"><span class="toc-number">1.5.</span> <span class="toc-text">来必力 LiveRe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.yunyoujun.cn/share/third-party-comment-system/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="云游君"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="云游君的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">第三方评论系统之我见<a class="post-edit-link" href="https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/_posts/share/third-party-comment-system.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-17 13:30:40" itemprop="dateCreated datePublished" datetime="2020-05-17T13:30:40+08:00">2020-05-17</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">8m</span></span></span><span class="leancloud_visitors" id="/share/third-party-comment-system/" data-flag-title="第三方评论系统之我见"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E4%BA%91%E6%B8%B8%E7%9A%84%E5%B0%8F%E5%88%86%E4%BA%AB/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">云游的小分享</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E8%AF%84%E6%B5%8B/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">评测</span></a><a class="tag" href="/tags/Disqus/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Disqus</span></a><a class="tag" href="/tags/Gitalk/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Gitalk</span></a><a class="tag" href="/tags/Valine/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Valine</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>静态博客纵有万般好，但不得不承认其常常需要很多奇技淫巧，方能实现<del>甚至无法实现</del>动态网站仅需数行代码便可实现的功能。</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>评论系统便是其代表之一。</p>
+<p>我尝试过数种第三方评论系统（Disqus/Gitalk/Valine/LiveRe(来必力)/畅言），并在其中反复横跳，丢失了不少可爱的评论，也很遗憾未能找到一款真正百无挑剔的评论系统。</p>
+<blockquote>
+<p>一个事物的发展往往是一个波浪式前进、循环往复式上升的过程。</p>
+</blockquote>
+<p>我将简单对我使用过的评论系统之利弊进行对比分析（可能包含许多个人色彩），以便各位看官参考。</p>
+<a id="more"></a>
+
+<p><img src="https://cos.yunyoujun.cn/blog/posts/jump-repeatedly.jpg" alt="反复横跳.jpg" loading="lazy"></p>
+<hr>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><h3 id="Disqus"><a href="#Disqus" class="headerlink" title="Disqus"></a><a target="_blank" rel="noopener" href="http://disqus.com/">Disqus</a></h3><p><a target="_blank" rel="noopener" href="http://disqus.com/">Disqus</a> 作为当前最大的第三方评论系统，功能强大，也不用担心数据跑路。<br>使用广泛，一个账号可以通用许多博客评论，甚至可以和均使用 Disqus 作为评论系统的网站建立联系，形成社区。</p>
+<p>但对于国内来说，却有一个致命缺点，需要科学上网。</p>
+<blockquote>
+<p>还可以使用 <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">DisqusJS</a>，为无法连通 Disqus 的访客通过 Disqus API 在前端页面渲染一个评论列表。但真正想要评论，仍须科学上网。<br><a target="_blank" rel="noopener" href="https://github.com/fooleap/disqus-php-api">disqus-php-api</a> 则可以代理 Disqus，我尝试使用了一下，填写作者的 API 时，竟然直接创建到<a target="_blank" rel="noopener" href="https://disqus.com/home/forum/fooleap/">作者的讨论</a>里了……也就是说还是需要自建，又稍微脱离了使用第三方评论的初心。</p>
+</blockquote>
+<p>我原本已经痛定思痛准备更换 Disqus 了，却发现其加载的请求与资源相当多（即便我已经关闭了 Disqus 的追踪和返利链接），最终还是退缩起来。</p>
+<p>以下是小伙伴们的一些可以参考的优化手段。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.skk.moe/post/prevent-disqus-from-slowing-your-site/">使 Disqus 不再拖累性能和页面加载 | Sukka’s Blog</a><br><a target="_blank" rel="noopener" href="https://blog.ichr.me/post/use-disqus-conveniently/">在特殊地区科学使用 Disqus 评论系统 | ChrAlpha 的幻想乡</a></p>
+</blockquote>
+<p>其实如果不是因为被墙，我还是很想直接用 Disqus 的，但是我还是有评论就很高兴的人，所以不想因此而有过高门槛。</p>
+<h3 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a><a target="_blank" rel="noopener" href="https://gitalk.github.io/">Gitalk</a></h3><p>在 <a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk">Gitalk</a> 诞生之前，还有一款 <a target="_blank" rel="noopener" href="https://github.com/imsun/gitment/">Gitment</a>。</p>
+<p>应该说 Gitment 是第一款利用 GitHub Issues 的评论系统。但是作者前后维护不到三个月便弃坑了。<br>虽然开源项目无可指责，但自己作为满怀期待的初期用户着实还是有些不开心。</p>
+<p>Gitalk 相比 Gitment 则持续维护了很久。所以首先肯定与感谢作者的开源精神与贡献。</p>
+<p>不过中途因为 GitHub API 的安全策略改变，每次进入文章都会调用 Gitalk 而收到了一大堆的安全警告邮件。</p>
+<blockquote>
+<p>现在已经修复 <a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/343">GitHub app API query parameter deprecation</a></p>
+</blockquote>
+<p>而关闭了一段时间，也一直没有再启用。</p>
+<p>以及 Gitalk 调用 OAuth 时会申请获取对所有公开项目的读<strong>写</strong>权限，如下图所示。</p>
+<p><img src="https://i.loli.net/2020/05/17/FOLHuTXn1JZYmrb.jpg" alt="gitalk-security.jpg" loading="lazy"></p>
+<p>你可以到<a target="_blank" rel="noopener" href="https://gitalk.github.io/">此处</a>尝试登陆。</p>
+<blockquote>
+<p>这似乎是因为 GitHub 无法继续划分权限。</p>
+</blockquote>
+<p>也就是说使用 Gitalk 评论的用户必须完全相信博主的 OAuth 不会作恶，同时因为 GitHub OAuth 不支持 CORS (<a target="_blank" rel="noopener" href="https://github.com/isaacs/github/issues/330">OAuth web flow endpoints don’t support CORS</a>)，<code>access_token</code> 还必须经过 <code>https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token</code> 这一代理才能获取。</p>
+<p>当然也可以选择自建，但是不是有些脱离选择静态博客的初心了呢。<del>没错，我就是懒。</del></p>
+<p>所以我着实有些不放心，也从用户的角度没有自信能完全取得游客的信任。（有些用户使用 GitHub OAuth 时可能没有注意到这里，所以也算提个醒。）</p>
+<p>我最理想的情况是 gitalk 在不传入 <code>clientSecret</code> 等参数，只提供必要的 <code>repo</code> 时，可以渲染文章对应标题的 Issue 评论内容。（类似于 Sukka 的 <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">DisqusJS</a>）</p>
+<blockquote>
+<p>感觉理论上是可以实现的，毕竟本来 Issue 就都是公开的。GitHub 也有完备的 <a target="_blank" rel="noopener" href="https://developer.github.com/v3/">API</a>。</p>
+</blockquote>
+<p>然后当用户想要评论时，点击链接跳转到对应 Issue 进行回复即可。这样登陆验证等全交给 GitHub 来做就可以了。</p>
+<blockquote>
+<p>我尝试提了个 ISSUE: <a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/383">[Feature Request] Only render issues content without clientSecret</a><br>如果能得到回复和实现就再好不过。（不行的话，就日后有空尝试自己能不能写出来，嗯，有空，咕咕咕。）</p>
+</blockquote>
+<h3 id="Valine"><a href="#Valine" class="headerlink" title="Valine"></a><a target="_blank" rel="noopener" href="https://valine.js.org/">Valine</a></h3><p>当 Gitalk 关闭后，<a target="_blank" rel="noopener" href="https://github.com/xCss/Valine">Valine</a> 一直是我在使用的方案。</p>
+<blockquote>
+<p>关于邮件提醒等功能则可以使用 <a target="_blank" rel="noopener" href="https://github.com/DesertsP/Valine-Admin">Valine-Admin</a></p>
+</blockquote>
+<p>但是最近 Valine 不知何故在 <a target="_blank" rel="noopener" href="https://github.com/xCss/Valine/blob/master/README.md">README</a> 里写上了 <code>由于某些原因，src目录将从v1.4.0后暂停更新.</code>。</p>
+<p>也就是说 Valine 相当于开始闭源。</p>
+<p>且在闭源后，作者在其中加入了百度统计（<a target="_blank" rel="noopener" href="https://github.com/xCss/Valine/issues/258">v1.4.2, v1.4.1 will always load stats plugin from hm.baidu.com</a>），我翻看了 <a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js">v1.14.14</a> 似乎没有再找到相关代码。</p>
+<p>加之昨日，LeanCloud 始终登不上去（只是我个人，询问了其他朋友都正常，自己睡了一觉后也正常了），让我有点担忧起评论的数据。<br>说到底，其实一直都是在白嫖的 <a target="_blank" rel="noopener" href="https://leancloud.cn/">LeanCloud</a> 开发版的免费资源，而这数据本身就算丢失了 LeanCloud 也无需对此负责。</p>
+<p>所以对于是否继续使用 Valine 也有所动摇起来。</p>
+<h3 id="畅言"><a href="#畅言" class="headerlink" title="畅言"></a><a target="_blank" rel="noopener" href="http://changyan.kuaizhan.com/">畅言</a></h3><p>国内搜狐旗下的评论系统。（算是国内还幸存的屈指可数的几家）（多说、网易云跟帖均已关闭。）</p>
+<p>但是，都 2020 年了，官网还没有强制 <code>https</code> 跳转还是比较稀奇的。</p>
+<p>过去我曾经使用过，印象里它会自行给你插广告且占位很大，此外用户还须绑定手机号。</p>
+<p>所以基本不考虑。</p>
+<h3 id="来必力-LiveRe"><a href="#来必力-LiveRe" class="headerlink" title="来必力 LiveRe"></a><a target="_blank" rel="noopener" href="https://livere.com/">来必力 LiveRe</a></h3><p><a target="_blank" rel="noopener" href="https://livere.com/">LiveRe 来必力</a> 是一家来自韩国的评论系统，支持多种 SNS 账号连接登陆（QQ、微信、GitHub、百度、微博、豆瓣、Twitter 等等），很接地气。<br>且好处是<strong>不</strong>需要科学上网（官网甚至是备案过的），但是国内访问速度还是比较慢。</p>
+<p>因其体量，仍旧担心是否能够坚持下去不倒闭。毕竟国外用户大多数会直接选择 Disqus，而这也不是国内本土产品。截至目前官网显示的客户量竟然只有 1,350 个，对于已经运行数年的网站来说，是不是有些过少了呢？</p>
+<p>但光就其功能上来说，还是值得一用的。</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
+<thead>
+<tr>
+<th align="left">第三方评论系统</th>
+<th align="left">开源</th>
+<th align="left">速度</th>
+<th align="left">是否被墙</th>
+<th align="left">可否实现 PJAX</th>
+<th>数据可靠性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Disqus</td>
+<td align="left">否</td>
+<td align="left">慢</td>
+<td align="left">是</td>
+<td align="left">可以</td>
+<td>市场占有率高，可靠</td>
+</tr>
+<tr>
+<td align="left">Gitalk</td>
+<td align="left">是</td>
+<td align="left">中等</td>
+<td align="left">否</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/issues/205">不可以</a></td>
+<td>GitHub 还在一天，就永远不用担心</td>
+</tr>
+<tr>
+<td align="left">LiveRe</td>
+<td align="left">否</td>
+<td align="left">较慢</td>
+<td align="left">否</td>
+<td align="left">不可以</td>
+<td>存疑</td>
+</tr>
+<tr>
+<td align="left">Valine</td>
+<td align="left">薛定谔的开源</td>
+<td align="left">快</td>
+<td align="left">否</td>
+<td align="left">可以</td>
+<td>取决于 LeanCloud（看你是不是付费用户了）</td>
+</tr>
+</tbody></table>
+<p>以下是同一个页面加载不同评论系统时 <code>Dev Tools -&gt; Network</code> 的信息。（None 为不加载评论系统）</p>
+<blockquote>
+<p>Gitalk 懒得配置了，速度应该在 LiveRe 与 Valine 之间，影响不大。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">request</th>
+<th align="left">transferred</th>
+<th align="left">resources</th>
+<th align="left">Finish</th>
+<th align="left">DOMCOntentLoaded</th>
+<th align="left">Load</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">None</td>
+<td align="left">35</td>
+<td align="left">315 kB</td>
+<td align="left">850 kB</td>
+<td align="left">1.53 s</td>
+<td align="left">672 ms</td>
+<td align="left">1.52s</td>
+</tr>
+<tr>
+<td align="left">Disqus</td>
+<td align="left">94</td>
+<td align="left">1.9 MB</td>
+<td align="left">4.0 MB</td>
+<td align="left">16.51 s</td>
+<td align="left">1.38 s</td>
+<td align="left">2.24 s</td>
+</tr>
+<tr>
+<td align="left">LiveRe</td>
+<td align="left">60</td>
+<td align="left">1.1 MB</td>
+<td align="left">3.2 MB</td>
+<td align="left">13.06 s</td>
+<td align="left">1.14 s</td>
+<td align="left">1.98 s</td>
+</tr>
+<tr>
+<td align="left">Valine</td>
+<td align="left">43</td>
+<td align="left">408 kB</td>
+<td align="left">1.1 MB</td>
+<td align="left">5.66 s</td>
+<td align="left">1.29 s</td>
+<td align="left">1.83 s</td>
+</tr>
+</tbody></table>
+<p>简而言之，Disqus 最重最慢，Valine 最轻最快。与之对应的自然是功能强弱。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回顾下来，我现在最能信任的还是 GitHub 与 Disqus。体量足够大，不用担心跑路。<br>虽然很想直接用 Disqus，但是我本身就不是产出硬核技术文章的人，对于想要评论的游客要求科学上网未免有些苛刻。</p>
+<p>GitHub 倒是既慷慨又实用，所以要是能渲染 Issue 评论预览，想评论的点击链接跳转对应 Issue 就好了。</p>
+<p>所以我目前的解决方案是 Valine 和 GitHub Issues 混用。（但是结果大家基本都是直接用的 Valine ……）</p>
+<p>评论区的 GitHub Issues 我设置了跳转搜索对应文章标题的 Issue，当没有相关 Issue 时，大家也可以通过预置的 Comment 评论模版，新建 Issue。</p>
+<blockquote>
+<p>但是因为要多跳几个链接，无法直接显示在评论区中预览，所以基本没有人用。<br>不过我认为相比 Valine 的数据（保不准哪天我就因为各种原因不得不抛弃它了），显然 GitHub 要更为可靠些。所以重要的留言可以考虑留在 Issue 里哦～</p>
+</blockquote>
+<p>GitHub 最近则在内测 <a target="_blank" rel="noopener" href="https://github.com/zeit/now/discussions/">Discussions</a> 感觉也是一个不错的交流方式，值得期待。</p>
+<hr>
+<p>Q.E.D.</p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>云游君</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.yunyoujun.cn/share/third-party-comment-system/" title="第三方评论系统之我见">https://www.yunyoujun.cn/share/third-party-comment-system/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/note/make-el-bot/" rel="prev" title="el-bot &amp; mirai-ts 制作笔记"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">el-bot &amp; mirai-ts 制作笔记</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/diary/life-is-not-a-marathon/" rel="next" title="人生不是一场马拉松"><span class="post-nav-text">人生不是一场马拉松</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>因为 Valine 我保不准哪天就会因为种种原因抛弃它了。</span><br><span>所以如果是重要的评论，建议跳转 GitHub Issues 发表。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+第三方评论系统之我见">GitHub Issues</a></div><div id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  const valineConfig = {"enable":true,"appId":"4x0IwQ1sy95mOGQDTO8MYCeA-gzGzoHsz","appKey":"9loqwF3UDklPDHaP9IN2uwN8","placeholder":"大佬求指教&nbsp_(:з」∠)_ （填写邮箱可以收到回复通知～）","avatar":null,"pageSize":10,"visitor":true,"highlight":true,"recordIP":true,"enableQQ":true,"requiredFields":["nick","mail"],"el":"#valine-container","lang":"zh-cn"}
+  valineConfig.path = window.location.pathname
+  new Valine(valineConfig)
+}
+setTimeout(initValine, 1000)</script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备17038157号</a></div><div class="copyright"><span>&copy; 2016 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 云游君</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.0.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.9.5</span></div><div class="footer-custom-text"><a style="display:inline-block" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/logo/upyun-logo.png" alt="upyun"/></a></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script defer src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script defer src="/js/search/algolia-search.js"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div class="algolia-pagination" id="algolia-pagination"></div></div></div></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
